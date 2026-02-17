@@ -28,7 +28,7 @@ Stop guessing what burns your token budget - know exactly where every token goes
 
 ```bash
 # Clone the repository
-git clone https://github.com/jayismeta/claudewatch.git
+git clone https://github.com/lougerone/claudewatch.git
 cd claudewatch
 
 # Install dependencies
@@ -260,18 +260,12 @@ Contributions welcome! Please:
 
 ## License
 
-MIT © Jay Patel
+MIT © Jay Mehta
 
 ---
 
 ## Support
 
-- **Issues**: [GitHub Issues](https://github.com/jayismeta/claudewatch/issues)
-- **Twitter**: [@jayismeta](https://twitter.com/jayismeta)
-- **Email**: jay@jayismeta.com
-
----
-
-**Built by a human, not AI slop.**
-
-*The last craftsman in a sea of automation.*
+- **Issues**: [GitHub Issues](https://github.com/lougerone/claudewatch/issues)
+- **Twitter**: [@jaybtc](https://twitter.com/jaybtc)
+- **Email**: hi@jayismeta.com
