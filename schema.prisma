@@ -1,0 +1,88 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  apiKey        String    @unique // Anthropic API key (encrypted)
+  monthlyBudget Float?    // Optional monthly budget in USD
+  createdAt     DateTime  @default(now())
+  lastActive    DateTime  @updatedAt
+  
+  requests      Request[]
+  tags          Tag[]
+  alerts        Alert[]
+  
+  @@map("users")
+}
+
+model Request {
+  id           String   @id @default(cuid())
+  userId       String
+  timestamp    DateTime @default(now())
+  model        String   // claude-sonnet-4-5-20250929, etc.
+  inputTokens  Int
+  outputTokens Int
+  totalTokens  Int
+  cost         Float    // USD
+  duration     Int      // milliseconds
+  statusCode   Int
+  toolsUsed    String   @default("[]") // JSON array of tool names
+  metadata     String   @default("{}") // JSON object
+  
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tags         RequestTag[]
+  
+  @@index([userId, timestamp])
+  @@index([userId, model])
+  @@map("requests")
+}
+
+model Tag {
+  id          String   @id @default(cuid())
+  userId      String
+  name        String
+  color       String   @default("#22c55e") // Tailwind green-500
+  autoPattern String?  // Regex pattern for auto-tagging
+  createdAt   DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  requests    RequestTag[]
+  
+  @@unique([userId, name])
+  @@map("tags")
+}
+
+model RequestTag {
+  requestId String
+  tagId     String
+  
+  request   Request @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  
+  @@id([requestId, tagId])
+  @@map("request_tags")
+}
+
+model Alert {
+  id            String   @id @default(cuid())
+  userId        String
+  type          String   // 'budget' | 'spike' | 'daily_summary'
+  threshold     Float    // Threshold value (e.g., budget amount)
+  message       String
+  triggered     DateTime @default(now())
+  acknowledged  Boolean  @default(false)
+  
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId, acknowledged])
+  @@map("alerts")
+}

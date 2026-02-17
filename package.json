@@ -1,0 +1,31 @@
+{
+  "name": "claudewatch",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cost visibility and usage analytics for Claude API users",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:proxy": "npm run dev --workspace=@claudewatch/proxy",
+    "dev:dashboard": "npm run dev --workspace=@claudewatch/dashboard",
+    "dev": "concurrently \"npm run dev:proxy\" \"npm run dev:dashboard\"",
+    "build": "npm run build --workspaces",
+    "db:migrate": "npm run migrate --workspace=@claudewatch/database",
+    "db:studio": "npm run studio --workspace=@claudewatch/database"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "claude",
+    "anthropic",
+    "token-tracking",
+    "analytics",
+    "api-monitoring"
+  ],
+  "author": "Jay <jay@jayismeta.com>",
+  "license": "MIT"
+}

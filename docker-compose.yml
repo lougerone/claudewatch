@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  proxy:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - DATABASE_URL=file:/data/claudewatch.db
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:3000}
+    volumes:
+      - claudewatch-data:/data
+    restart: unless-stopped
+
+volumes:
+  claudewatch-data:
