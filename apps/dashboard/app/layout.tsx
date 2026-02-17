@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
-import { Lexend } from "next/font/google";
+import { Poppins, Lora } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
 import { Providers } from "@/components/providers";
 
-const lexend = Lexend({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-lexend",
+  weight: ["400", "500", "600"],
+  variable: "--font-poppins",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-lora",
 });
 
 const geistMono = localFont({
@@ -18,7 +25,18 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "ClaudeWatch",
-  description: "Cost visibility and usage analytics for Claude API",
+  description: "Token budget management for the modern vibecoder.",
+  openGraph: {
+    title: "ClaudeWatch",
+    description: "Token budget management for the modern vibecoder.",
+    images: [{ url: "/api/og", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ClaudeWatch",
+    description: "Token budget management for the modern vibecoder.",
+    images: ["/api/og"],
+  },
 };
 
 export default function RootLayout({
@@ -28,12 +46,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lexend.variable} ${geistMono.variable} antialiased font-sans`}>
+      <body
+        className={`${poppins.variable} ${lora.variable} ${geistMono.variable} antialiased font-serif`}
+      >
         <Providers>
           <div className="flex h-screen">
             <Sidebar />
-            <main className="flex-1 overflow-auto p-8">
-              {children}
+            <main className="flex-1 overflow-auto">
+              <div className="max-w-5xl mx-auto px-8 py-10">
+                {children}
+              </div>
             </main>
           </div>
         </Providers>

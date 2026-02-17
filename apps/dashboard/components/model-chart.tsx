@@ -1,9 +1,17 @@
 "use client";
 
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  ResponsiveContainer,
+  Legend,
+} from "recharts";
 import { ModelBreakdown } from "@/lib/api";
 
-const COLORS = ["#0d9488", "#e07a5f", "#6b6560", "#3b82f6"];
+// Earthy, warm tones aligned with brand
+const COLORS = ["#C15F3C", "#5B8A6F", "#7A736A", "#D4A574"];
 
 function shortModel(model: string): string {
   if (model.includes("opus")) return "Opus";
@@ -20,20 +28,22 @@ export function ModelChart({ data }: { data: ModelBreakdown[] }) {
   }));
 
   return (
-    <div className="bg-card border border-border rounded-sm p-5">
-      <h3 className="text-sm font-medium mb-4">By Model</h3>
-      <ResponsiveContainer width="100%" height={280}>
+    <div className="paper rounded p-5">
+      <h3 className="text-[13px] font-sans font-medium text-foreground mb-5">
+        Model Distribution
+      </h3>
+      <ResponsiveContainer width="100%" height={260}>
         <PieChart>
           <Pie
             data={formatted}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={100}
+            innerRadius={55}
+            outerRadius={90}
             dataKey="value"
             nameKey="name"
-            strokeWidth={1}
-            stroke="#faf8f5"
+            strokeWidth={2}
+            stroke="#FAF7F2"
           >
             {formatted.map((_, i) => (
               <Cell key={i} fill={COLORS[i % COLORS.length]} />
@@ -42,15 +52,17 @@ export function ModelChart({ data }: { data: ModelBreakdown[] }) {
           <Tooltip
             formatter={(value: number) => [`$${value.toFixed(3)}`, "Cost"]}
             contentStyle={{
-              backgroundColor: "#fff",
-              border: "1px solid #e0dbd4",
-              borderRadius: "2px",
+              backgroundColor: "#FFFFFF",
+              border: "1px solid #E3DDD4",
+              borderRadius: "6px",
               fontSize: "12px",
+              fontFamily: "var(--font-lora)",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
             }}
           />
           <Legend
             formatter={(value: string) => (
-              <span className="text-xs text-foreground">{value}</span>
+              <span className="text-xs font-sans text-ink-700">{value}</span>
             )}
           />
         </PieChart>

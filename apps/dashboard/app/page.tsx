@@ -18,8 +18,10 @@ export default function OverviewPage() {
 
   if (loadingSummary || loadingDaily || loadingModels) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <p className="text-sm text-muted-foreground font-mono">Loading...</p>
+      <div className="flex items-center justify-center h-96">
+        <p className="text-sm text-muted-foreground font-serif italic">
+          Loading your analytics...
+        </p>
       </div>
     );
   }
@@ -33,30 +35,28 @@ export default function OverviewPage() {
   };
 
   return (
-    <div className="max-w-6xl">
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold">Overview</h2>
-        <p className="text-sm text-muted-foreground">Last 30 days</p>
+    <div>
+      <div className="mb-8">
+        <h2 className="text-xl font-sans font-semibold text-foreground">
+          Overview
+        </h2>
+        <p className="text-sm text-muted-foreground font-serif mt-1">
+          A summary of your Claude API usage over the last 30 days.
+        </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <StatCard
           label="Total Tokens"
           value={formatTokens(s.totalTokens)}
           sub={`${s.totalTokens.toLocaleString()} exact`}
         />
-        <StatCard
-          label="Total Cost"
-          value={`$${s.totalCost.toFixed(2)}`}
-        />
-        <StatCard
-          label="Requests"
-          value={s.requestCount.toLocaleString()}
-        />
+        <StatCard label="Total Cost" value={`$${s.totalCost.toFixed(2)}`} />
+        <StatCard label="Requests" value={s.requestCount.toLocaleString()} />
         <StatCard
           label="Avg Duration"
           value={`${(s.avgDuration / 1000).toFixed(1)}s`}
-          sub={`${formatTokens(s.avgTokensPerRequest)} tokens/req`}
+          sub={`${formatTokens(s.avgTokensPerRequest)} tokens per request`}
         />
       </div>
 

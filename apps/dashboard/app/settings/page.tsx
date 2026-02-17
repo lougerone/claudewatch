@@ -13,60 +13,76 @@ export default function SettingsPage() {
 
   return (
     <div className="max-w-2xl">
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold">Settings</h2>
-        <p className="text-sm text-muted-foreground">Configure your ClaudeWatch instance</p>
+      <div className="mb-8">
+        <h2 className="text-xl font-sans font-semibold text-foreground">
+          Settings
+        </h2>
+        <p className="text-sm text-muted-foreground font-serif mt-1">
+          Configure your ClaudeWatch instance.
+        </p>
       </div>
 
       <div className="space-y-6">
-        <div className="bg-card border border-border rounded-sm p-5">
-          <h3 className="text-sm font-medium mb-4">Budget</h3>
+        <div className="paper rounded p-6">
+          <h3 className="text-[13px] font-sans font-medium text-foreground mb-4">
+            Monthly Budget
+          </h3>
           <div className="space-y-3">
             <div>
-              <label className="block text-xs text-muted-foreground mb-1">
-                Monthly budget (USD)
+              <label className="block text-xs text-muted-foreground font-sans mb-1.5">
+                Budget limit (USD)
               </label>
               <input
                 type="number"
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
                 placeholder="50.00"
-                className="w-full px-3 py-2 text-sm border border-border rounded-sm bg-background focus:outline-none focus:ring-1 focus:ring-teal-600"
+                className="w-full px-3 py-2 text-sm font-serif border border-border rounded bg-background focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-colors"
               />
             </div>
             <button
               onClick={handleSave}
-              className="px-4 py-2 text-xs bg-teal-600 text-white rounded-sm hover:bg-teal-700 transition-colors"
+              className="px-4 py-2 text-xs font-sans font-medium bg-accent text-accent-foreground rounded hover:bg-accent-light transition-colors"
             >
               {saved ? "Saved" : "Save Budget"}
             </button>
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-sm p-5">
-          <h3 className="text-sm font-medium mb-4">Proxy Configuration</h3>
-          <div className="space-y-2 text-xs">
-            <div className="flex justify-between py-2 border-b border-border">
-              <span className="text-muted-foreground">Proxy URL</span>
-              <code className="font-mono bg-muted px-2 py-0.5 rounded-sm">http://localhost:3001</code>
+        <div className="paper rounded p-6">
+          <h3 className="text-[13px] font-sans font-medium text-foreground mb-4">
+            Proxy Configuration
+          </h3>
+          <div className="space-y-0 divide-y divide-border text-[13px]">
+            <div className="flex justify-between py-3">
+              <span className="text-muted-foreground font-serif">Proxy URL</span>
+              <code className="font-mono text-xs bg-muted px-2 py-0.5 rounded text-ink-700">
+                http://localhost:3001
+              </code>
             </div>
-            <div className="flex justify-between py-2 border-b border-border">
-              <span className="text-muted-foreground">API Endpoint</span>
-              <code className="font-mono bg-muted px-2 py-0.5 rounded-sm">POST /v1/messages</code>
+            <div className="flex justify-between py-3">
+              <span className="text-muted-foreground font-serif">API Endpoint</span>
+              <code className="font-mono text-xs bg-muted px-2 py-0.5 rounded text-ink-700">
+                POST /v1/messages
+              </code>
             </div>
-            <div className="flex justify-between py-2">
-              <span className="text-muted-foreground">Database</span>
-              <code className="font-mono bg-muted px-2 py-0.5 rounded-sm">SQLite (local)</code>
+            <div className="flex justify-between py-3">
+              <span className="text-muted-foreground font-serif">Database</span>
+              <code className="font-mono text-xs bg-muted px-2 py-0.5 rounded text-ink-700">
+                SQLite (local)
+              </code>
             </div>
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-sm p-5">
-          <h3 className="text-sm font-medium mb-4">Quick Setup</h3>
-          <p className="text-xs text-muted-foreground mb-3">
-            Point your Anthropic client to the proxy:
+        <div className="paper rounded p-6">
+          <h3 className="text-[13px] font-sans font-medium text-foreground mb-2">
+            Quick Setup
+          </h3>
+          <p className="text-[13px] text-muted-foreground font-serif mb-4">
+            Point your Anthropic client to the proxy to begin tracking:
           </p>
-          <pre className="bg-muted p-3 rounded-sm text-xs font-mono overflow-x-auto">
+          <pre className="bg-muted p-4 rounded text-xs font-mono overflow-x-auto text-ink-700 leading-relaxed">
 {`const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
   baseURL: 'http://localhost:3001',

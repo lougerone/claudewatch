@@ -3,17 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --background: #faf8f5;
-  --foreground: #1a1a1a;
-  --muted: #f0ece6;
-  --muted-foreground: #6b6560;
-  --border: #e0dbd4;
-  --card: #ffffff;
-  --accent: #0d9488;
-  --accent-foreground: #ffffff;
+  --background: #FAF7F2;
+  --foreground: #2C2C2C;
+  --muted: #F0EBE3;
+  --muted-foreground: #7A736A;
+  --border: #E3DDD4;
+  --card: #FFFFFF;
+  --card-hover: #FDFBF8;
+  --accent: #C15F3C;
+  --accent-light: #D4785A;
+  --accent-muted: rgba(193, 95, 60, 0.08);
+  --accent-foreground: #FFFFFF;
+  --success: #5B8A6F;
+  --success-muted: rgba(91, 138, 111, 0.1);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scholarly underline accent */
+.accent-underline {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+/* Subtle paper texture feel */
+.paper {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+::selection {
+  background-color: rgba(193, 95, 60, 0.15);
 }
