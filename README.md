@@ -219,29 +219,29 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ---
 
-## Roadmap
+## What Works Today
 
-### Phase 1: Core Proxy ✅
-- [x] Request logging
-- [x] Token tracking
-- [x] Cost calculation
-- [x] Analytics API
+- **Transparent proxy** — Drop-in replacement for Anthropic's base URL. Zero config, zero latency impact.
+- **Automatic token logging** — Every request is recorded with input/output tokens, cost, duration, and model.
+- **Analytics dashboard** — Overview stats, daily cost/token charts, model distribution, tag breakdowns.
+- **Request log** — Searchable, paginated table of every API call with filtering.
+- **Tag system** — Categorize requests (coding, research, writing, etc.) with auto-tagging via regex patterns.
+- **Budget alerts** — Get notified at 50%, 80%, 90%, and 100% of your monthly budget.
+- **Cost calculation** — Accurate per-request pricing for Sonnet, Opus, and Haiku.
+- **Self-hosted** — SQLite database, everything runs on your machine. Your data stays local.
 
-### Phase 2: Dashboard (In Progress)
-- [ ] React dashboard UI
-- [ ] Real-time charts
-- [ ] Tag management
-- [ ] Alert configuration
+## What's Coming
 
-### Phase 3: Advanced Features
-- [ ] Budget forecasting
-- [ ] Anomaly detection
-- [ ] Export to CSV
-- [ ] Slack/Discord webhooks
-
-### Phase 4: Extensions
+- [ ] Real-time WebSocket updates
+- [ ] Export to CSV/JSON
+- [ ] Streaming response support
+- [ ] Tag CRUD in dashboard UI
+- [ ] Alert configuration UI
+- [ ] Usage heatmap (by hour/day of week)
+- [ ] Slack/Discord webhook notifications
+- [ ] Multi-user support
+- [ ] Hosted SaaS version (Vercel + Postgres)
 - [ ] Chrome extension
-- [ ] Obsidian plugin
 - [ ] VS Code extension
 
 ---
